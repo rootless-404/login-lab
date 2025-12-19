@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Security -->
+<meta http-equiv="Content-Security-Policy"
+content="default-src 'self'; style-src 'self'; script-src 'self'; frame-ancestors 'none'">
+<meta http-equiv="X-Frame-Options" content="DENY">
+
+<style>
+body{
+  margin:0;font-family:Arial;background:#0d1117;color:#c9d1d9
+}
+.sidebar{
+  width:220px;height:100vh;position:fixed;background:#161b22;padding:20px
+}
+.sidebar h3{color:#58a6ff}
+.sidebar a{
+  display:block;color:#c9d1d9;text-decoration:none;margin:12px 0
+}
+.sidebar a:hover{color:#58a6ff}
+.main{
+  margin-left:240px;padding:30px
+}
+.card{
+  background:#161b22;border-radius:12px;padding:20px;margin-bottom:20px
+}
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px
+}
+.stat{
+  background:#0d1117;padding:20px;border-radius:10px;text-align:center
+}
+.logout{
+  background:#ff5555;color:#000;border:none;padding:10px 16px;border-radius:8px;cursor:pointer
+}
+</style>
+</head>
+
+<body>
+<div class="sidebar">
+  <h3>Admin Panel</h3>
+  <a href="#">Dashboard</a>
+  <a href="#">Users</a>
+  <a href="#">Logs</a>
+  <a href="#">Settings</a>
+</div>
+
+<div class="main">
+  <div class="card">
+    <h2>Dashboard</h2>
+    <p>Status: <span style="color:#3fb950">Secure</span></p>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <h3>Users</h3>
+      <p>128</p>
+    </div>
+    <div class="stat">
+      <h3>Login Attempts</h3>
+      <p>342</p>
+    </div>
+    <div class="stat">
+      <h3>Blocked IPs</h3>
+      <p>27</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Security Logs</h3>
+    <pre>
+[OK] XSS attempt blocked
+[OK] Brute force limited
+[OK] Invalid session rejected
+    </pre>
+  </div>
+</div>
+
+<script>
+if(localStorage.getItem("auth")!=="true"){
+  window.location="index.html";
+}
+function logout(){
+  localStorage.removeItem("auth");
+  window.location="index.html";
+}
+</script>
+</body>
+</html>
